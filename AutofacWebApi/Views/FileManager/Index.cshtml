@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>File Manager</h2>
+
+<div id="fileManager">
+    <div>{{filestring}}</div>
+    <button v-on:click="GetFromFile">Get From File</button>
+    <button v-on:click="GetFromMemory">Get From Memory</button>
+</div>
+
+@section scripts
+{
+    <script>
+        new Vue({
+            el: '#fileManager',
+            data: {
+                filestring: "Empty"
+            },
+            methods: {
+                GetFromFile() {
+                    axios
+                        .get('/api/filemanagerapi/getfromfile')
+                        .then(response => (this.filestring = response.data))
+                },
+                GetFromMemory() {
+                    axios
+                        .get('/api/filemanagerapi/getfrommemory')
+                        .then(response => (this.filestring = response.data))
+                },
+            }
+        })
+    </script>
+}
