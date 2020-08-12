@@ -9,7 +9,7 @@ namespace AutofacWebApi.Controllers
     public class FileManagerController : Controller
     {
         // GET: FileManager
-        public ActionResult Index()
+        public ActionResult Cache()
         {
             return View();
         }

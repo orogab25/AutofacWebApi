@@ -32,7 +32,7 @@ namespace AutofacWebApi.Decorators.Concrete
                 };
                 _memCache.Add(cacheItemName, cacheItemValue, policy);
             }
-            File.Delete(filePath);
+            /*File.Delete(filePath);*/
             Thread.Sleep(3000);
 
             return (string)_memCache.GetCacheItem(cacheItemName).Value;

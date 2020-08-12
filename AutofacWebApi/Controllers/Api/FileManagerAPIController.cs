@@ -18,8 +18,8 @@ namespace AutofacWebApi.Controllers.Api
         public IHttpActionResult GetFromFile()
         {
             IFileManager fileManager = new FileManagerConcrete();
-            string fileString = fileManager.Read(@"D:\InfoCompassWebsite\InfoCompassHuCms\Orosz_Gabor_POC\AutofacWebApi\AutofacWebApi\FileRead.txt");
-            fileManager.Write(@"D:\InfoCompassWebsite\InfoCompassHuCms\Orosz_Gabor_POC\AutofacWebApi\AutofacWebApi\FileRead.txt", fileString);
+            string fileString = fileManager.Read(AppDomain.CurrentDomain.GetData("DataDirectory").ToString() + "\\FileRead.txt");
+            fileManager.Write(AppDomain.CurrentDomain.GetData("DataDirectory").ToString() + "\\FileRead.txt", fileString);
 
             return Ok(fileString);
         }
@@ -33,8 +33,8 @@ namespace AutofacWebApi.Controllers.Api
             using (var scope = WebApiApplication.container.BeginLifetimeScope())
             {
                 IFileManager fileManager = scope.Resolve<IFileManager>();
-                fileString = fileManager.Read(@"D:\InfoCompassWebsite\InfoCompassHuCms\Orosz_Gabor_POC\AutofacWebApi\AutofacWebApi\FileRead.txt", "fileString");
-                fileManager.Write(@"D:\InfoCompassWebsite\InfoCompassHuCms\Orosz_Gabor_POC\AutofacWebApi\AutofacWebApi\FileRead.txt", fileString);
+                fileString = fileManager.Read(AppDomain.CurrentDomain.GetData("DataDirectory").ToString() + "\\FileRead.txt", "fileString");
+                fileManager.Write(AppDomain.CurrentDomain.GetData("DataDirectory").ToString() + "\\FileRead.txt", fileString);
             }
 
             return Ok(fileString);
